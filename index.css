@@ -47,9 +47,12 @@
 .search_container{
     width: 100%;
     margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.search_container input{
+.search input{
     outline: none;
     padding: 10px;
     border:1px solid #02060c99;
@@ -58,12 +61,19 @@
     border-right: none;
 }
 
-.search_container button{
+.search button{
     padding: 10px;
     border-left:none;
     border:1px solid #02060c99;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    cursor: pointer;
+}
+
+.filter button{
+    padding: 10px;
+    border:1px solid #02060c99;
+    border-radius: 8px;
     cursor: pointer;
 }
 
