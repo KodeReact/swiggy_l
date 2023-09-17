@@ -38,43 +38,43 @@ const RestaurantMenu = () => {
   }
 
   return (
-    <div className="restaurnat_menu_page">
-      <div className="restaurant_data">
-        <div className="restaurant_name_box">
-          <h2>{name}</h2>
-          <p>{cuisines.join(", ")}</p>
-          <p>{areaName}, {sla?.lastMileTravelString}</p>
+    <div className="w-full py-5 px-[15%]">
+      <div className="w-full mb-4 flex justify-between items-center">
+        <div className="">
+          <h2 className='text-[#282c3f] mb-2 capitalize text-xl font-bold'>{name}</h2>
+          <p className='text-[#7e808c] h-4 text-sm whitespace-nowrap mb-1 overflow-hidden overflow-ellipsis'>{cuisines.join(", ")}</p>
+          <p className='text-[#7e808c] h-4 text-sm whitespace-nowrap mb-1 overflow-hidden overflow-ellipsis'>{areaName}, {sla?.lastMileTravelString}</p>
         </div>
-        <div className="restaurant_rating_box">
-          <h4>⭐{avgRating}</h4>
-          <h5>{totalRatingsString}</h5>
+        <div className="border border-[#e9e9eb] rounded-md text-center p-2 max-w-[100px] shadow">
+          <h4 className='text-[#3d9b6d] pb-2 border-b border-b-[#e9e9eb] mb-2 font-bold'>⭐{avgRating}</h4>
+          <h5 className='text-[#8b8d97] font-bold text-xs'>{totalRatingsString}</h5>
         </div>
       </div>
-      <div className="restaurant_delivery">
+      <div className="mb-4">
         { expectationNotifiers &&
-          <div className="restaurant_delivery_distance">
+          <div className="text-[#7e808c] flex items-start mb-4 text-sm font-medium">
             🚴‍♂️ {expectationNotifiers[0]?.text}
           </div>
         }
-        <hr />
-        <div className="restaurant_delivery_time">
-          <div className="restaurant_delivery_time_box">🕖 {sla?.deliveryTime} MINS</div>
-          <div className="restaurant_delivery_time_price">{costForTwoMessage}</div>
+        <hr className='border-0 border-b border-dashed border-b-[#d3d3d3] mb-4' />
+        <div className="mb-4 text-[#3e4152] flex items-center text-base font-bold">
+          <div className="mr-6">🕖 {sla?.deliveryTime} MINS</div>
+          <div className="">{costForTwoMessage}</div>
         </div>
       </div>
-      <div className="restaurant_coupon_container">
+      <div className="flex items-center overflow-x-scroll pb-4 mb-2 no-scrollbar">
         {offers.map((x)=><RestaurantCoupon key={x?.info?.offerIds[0]} data={x?.info}/>)}
       </div>
-      <div className='restaurant_veg_container'>
-        <div className='restaurant_veg_box'>
-          <div>Veg Only</div>
-          <button onClick={()=>handleClickVeg(itemcards)}>
-            <span></span>
+      <div className=''>
+        <div className='mt-6 mx-4 h-3 flex items-center translate-z'>
+          <div className='text-[#3d4152] font-bold text-base'>Veg Only</div>
+          <button className='ml-3 h-4 border-0 cursor-pointer bg-[#d4d5d9] w-9 relative rounded inline-block translate-z transition-c will' onClick={()=>handleClickVeg(itemcards)}>
+            <span className='absolute top-0 left-0 w-4 bg-[#fff] border-2 border-[#d4d5d9] h-4 rounded transition-all'></span>
           </button>
         </div>
-        <hr/> 
+        <hr className='border-b-[.5px] h-[.5px] my-6 mx-auto border-[#d3d3d3]'/> 
       </div>
-      <div className="restaurant_menu">
+      <div className="">
         { itemcards &&
             itemcards.map((x)=><RestaurantMenuList key={x?.card?.card?.title} data={x?.card?.card}/>)
         }

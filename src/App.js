@@ -11,7 +11,7 @@ const Contact=lazy(()=>import("./components/Contact"))
 
 const AppLayout=()=>{
     return(
-        <div className="app">
+        <div className="w-screen h-screen">
             <Header/>
             <Outlet/>
         </div>
