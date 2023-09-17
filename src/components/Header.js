@@ -13,7 +13,7 @@ const Header=()=>{
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About us</Link></li>
-                    <li><Link>Contact</Link></li>
+                    <li><Link to='/contact'>Contact</Link></li>
                     <li><Link>Cart</Link></li>
                     <button onClick={()=>{btnName==='login'?setBtnName('logout'):setBtnName('login')}}>{btnName}</button>
                 </ul>

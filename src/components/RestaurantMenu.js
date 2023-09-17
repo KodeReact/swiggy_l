@@ -1,27 +1,16 @@
-import { useEffect, useState } from "react";
 import Shimmer from './Shimmer';
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constants";
 import RestaurantCoupon from "./RestaurantCoupon";
 import RestaurantMenuList from "./RestaurantMenuList";
 import RestaurantNestedMenuList from "./RestaurantNestedMenuList";
-
+import useRestaurantMenu from '../utils/useRestaurantMenu';
+import { useState } from 'react';
 
 const RestaurantMenu = () => {
 
-  const[resInfo,setResInfo]=useState([]);
+  const[vegNonvegBtn,setVegNonvegBtn]=useState(false);
   const {resId}=useParams();
-
-  useEffect(()=>{
-    fetchData();
-  },[]);
-
-  const fetchData=async()=>{
-    const data=await fetch(MENU_API+resId);
-    const json=await data.json();
-    console.log(json.data);
-    setResInfo(json.data);
-  };
+  const[resInfo,setResInfo]=useRestaurantMenu(resId);
 
   if(resInfo.length===0){return <Shimmer/>};
 
@@ -33,7 +22,20 @@ const RestaurantMenu = () => {
 
   // const itemcards=(cards?.filter((x)=>x?.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" || x?.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"));
 
+  // const handleClickVeg=()=>{
+  //   return(
+  //   setVegNonvegBtn()=!vegNonvegBtn,
+  //   console.log(vegNonvegBtn));
+  // }
 
+
+
+  const handleClickVeg=(itemcards)=>{
+    const filterVeg=itemcards?.map((x)=>x?.card?.card?.itemCards?.filter((i)=>i?.card?.info?.itemAttribute?.vegClassifier==="VEG"));
+    // console.log(filterVeg);
+    setResInfo(filterVeg);
+    setVegNonvegBtn(!vegNonvegBtn);
+  }
 
   return (
     <div className="restaurnat_menu_page">
@@ -62,6 +64,15 @@ const RestaurantMenu = () => {
       </div>
       <div className="restaurant_coupon_container">
         {offers.map((x)=><RestaurantCoupon key={x?.info?.offerIds[0]} data={x?.info}/>)}
+      </div>
+      <div className='restaurant_veg_container'>
+        <div className='restaurant_veg_box'>
+          <div>Veg Only</div>
+          <button onClick={()=>handleClickVeg(itemcards)}>
+            <span></span>
+          </button>
+        </div>
+        <hr/> 
       </div>
       <div className="restaurant_menu">
         { itemcards &&

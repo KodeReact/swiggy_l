@@ -342,6 +342,61 @@
     font-weight: 700;
 }
 
+.restaurant_veg_box{
+    margin-top: 24px;
+    margin: 0 16px;
+    display: flex;
+    align-items: center;
+    height: 14px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.restaurant_veg_box div{
+    font-size: 1rem;
+    color: #3d4152;
+    font-weight: 600;
+}
+
+.restaurant_veg_box button{
+    margin-left: 12px;
+    font-size: 0;
+    height: 18px;
+    border: none;
+    cursor: pointer;
+    backface-visibility: hidden;
+    background: #d4d5d9;
+    width: 36px;
+    position: relative;
+    transition: background-color .25s linear;
+    will-change: background-color;
+    transform: translateZ(0);
+    contain: layout;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.restaurant_veg_box button span{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    background: #fff;
+    border: 2px solid #d4d5d9;
+    transition: all .25s linear;
+    will-change: transform,border-color;
+    contain: strict;
+    border-radius: 4px;
+    height: 18px;
+}
+
+.restaurant_veg_container hr{
+    border-bottom: .5px solid #d3d3d3;
+    height: .5px;
+    margin: 24px auto;
+    width: calc(100% - 32px);
+}
+
 .itemList{
     margin: 24px 8px 16px 16px;
 }
